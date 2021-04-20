@@ -44,10 +44,11 @@ sampleinfo <- read.delim("SampleInfo_Corrected.txt", stringsAsFactors = TRUE)
 Now we can have a look at the data we have imported
 ```{r}
 head(seqdata)
-head(sampleinfo)
+head(sampleinfo, 10)
 ```
 Seqdata has information about the genes, the first two columns contain geneID and length.
 Sampleinfo has basic information about each sample that is required for analysis.
+
 
 ## Formatting 
 
@@ -128,9 +129,7 @@ This plot shows us that there are in fact pairings within the data, but does not
 ```{r}
 # Allowing side-by-side plots of Cell type and Status
 par(mfrow=c(1,2))
-# Setting cell colours for each group
-col_celltype <- c("#9932CC", "#FDD20EFF")[sampleinfo$CellType]
-col_status <- c("#00AFBB", "#E7B800", "#FC4E07")[sampleinfo$Status]
+
 # Plotting cell type MDS graph
 plotMDS(DGEcount, col=col_celltype)
 legend("topleft",fill=c("#9932CC","#FDD20EFF"),legend=levels(sampleinfo$CellType))

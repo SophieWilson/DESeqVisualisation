@@ -25,6 +25,8 @@ rownames(seq_counts) <- seqdata[,1]
 colnames(seq_counts) <- sampleinfo$SampleName
 head(seq_counts)
 
+
+
 DGEcount <- DGEList(seq_counts)
 # Look at the data
 head(DGEcount)
