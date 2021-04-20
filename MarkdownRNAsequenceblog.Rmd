@@ -8,22 +8,19 @@ data got from this papaer: https://pubmed.ncbi.nlm.nih.gov/25730472/
 data can be accessed: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE60450
 
 ```{r, warning=FALSE, eval=FALSE}
+# Installing packages if not already installed
 if (!requireNamespace("BiocManager"))
     install.packages("BiocManager")
-BiocManager::install(c("limma", "edgeR", "Glimma", "org.Mm.eg.db", "gplots", "RColorBrewer", "NMF", "BiasedUrn", "EnhancedVolcano"))
-install.packages('tikzDevice')
+list.of.packages <- c("RColorBrewer", "NMF", "ggplot2", "EnhancedVolcano", "DESeq2")
+new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+if(length(new.packages)) install.packages(new.packages)
 ```
 These are the packages this tutorial will use.
 ```{r, eval=FALSE,warning=FALSE}
-library(edgeR)
-library(limma)
-library(Glimma)
-library(gplots)
 library(RColorBrewer)
 library(NMF)
 library(ggplot2)
 library(EnhancedVolcano)
-library(tikzDevice)
 library(DESeq2)
 ```
 Setting the working directory
@@ -129,7 +126,8 @@ This plot shows us that there are in fact pairings within the data, but does not
 ```{r}
 # Allowing side-by-side plots of Cell type and Status
 par(mfrow=c(1,2))
-
+col_celltype <- c("#9932CC", "#FDD20EFF")[sampleinfo$CellType]
+col_status <- c("#00AFBB", "#E7B800", "#FC4E07")[sampleinfo$Status]
 # Plotting cell type MDS graph
 plotMDS(DGEcount, col=col_celltype)
 legend("topleft",fill=c("#9932CC","#FDD20EFF"),legend=levels(sampleinfo$CellType))

@@ -9,6 +9,8 @@ library(ggplot2)
 library(EnhancedVolcano)
 library(tikzDevice)
 
+### THIS CODE IS A PROTOTYPE, FOR THE POLISHED CODE PLEASE REFER TO THE MARKDOWN FILE. ##################
+
 setwd('C:/Users/Mischa/Documents/Uni Masters/Module 6 - Group proj/Blogpost')
 
 # Read the data into R
@@ -24,8 +26,6 @@ rownames(seq_counts) <- seqdata[,1]
 # Taking only the first 7 characters of column name
 colnames(seq_counts) <- sampleinfo$SampleName
 head(seq_counts)
-
-
 
 DGEcount <- DGEList(seq_counts)
 # Look at the data
